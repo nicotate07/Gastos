@@ -20,7 +20,10 @@ class AppKernel extends Kernel
             new FOS\RestBundle\FOSRestBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new UsuarioBundle\UsuarioBundle(),
+            new EventoBundle\EventoBundle(),
             new Lexik\Bundle\JWTAuthenticationBundle\LexikJWTAuthenticationBundle(),
+            new AhorroBundle\AhorroBundle(),
+            new CuentaBundle\CuentaBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

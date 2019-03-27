@@ -3,6 +3,9 @@ imports:
     - { resource: security.yml }
     - { resource: services.yml }
     - { resource: "@UsuarioBundle/Resources/config/services.yml" }
+    - { resource: "@EventoBundle/Resources/config/services.yml" }
+    - { resource: "@AhorroBundle/Resources/config/services.yml" }
+    - { resource: "@CuentaBundle/Resources/config/services.yml" }
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
@@ -66,6 +69,17 @@ swiftmailer:
     username: '%mailer_user%'
     password: '%mailer_password%'
     spool: { type: memory }
+
+fos_rest:
+    view:
+        formats:
+#            jsonp: true
+            json: true
+#            xml: true
+        templating_formats:
+            html: false
+        jsonp_handler: ~
+        view_response_listener: true
 
 fos_user:
     db_driver: orm
