@@ -24,6 +24,7 @@ class AppKernel extends Kernel
             new Lexik\Bundle\JWTAuthenticationBundle\LexikJWTAuthenticationBundle(),
             new AhorroBundle\AhorroBundle(),
             new CuentaBundle\CuentaBundle(),
+            new ExtraBundle\ExtraBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

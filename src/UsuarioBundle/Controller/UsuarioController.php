@@ -3,8 +3,10 @@
 namespace UsuarioBundle\Controller;
 
 use UsuarioBundle\Entity\Usuario;
+use EventoBundle\Entity\Evento;
+use AhorroBundle\Entity\Ahorro;
+use CuentaBundle\Entity\Cuenta;
 use UsuarioBundle\Form\UsuarioType;
-use UsuarioBundle\Form\ContraseniaType;
 use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use Symfony\Component\HttpFoundation\Request;
@@ -37,4 +39,12 @@ class UsuarioController extends FOSRestController
             'data' => $usuario
         );
     }
+
+    /**
+     * @Rest\View
+     */
+    // public function postUsuariosAction(){
+
+    //     return 0;
+    // }
 }

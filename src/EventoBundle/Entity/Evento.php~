@@ -3,6 +3,10 @@
 namespace EventoBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use UsuarioBundle\Entity\Usuario;
+use Doctrine\Common\Collections\ArrayCollection;
+use ExtraBundle\Entity\Ingreso;
+use ExtraBundle\Entity\Egreso;
 
 /**
  * Evento
@@ -12,6 +16,10 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Evento
 {
+    //-----------------------------------------------------
+    // Atributos
+    //-----------------------------------------------------
+
     /**
      * @var int
      *
@@ -42,6 +50,44 @@ class Evento
      */
     private $descripcion;
 
+    //-----------------------------------------------------
+    // Relaciones
+    //-----------------------------------------------------
+
+    /**
+     * @var \UsuarioBundle\Entity\Usuario
+     * 
+     * @ORM\ManyToOne(targetEntity="\UsuarioBundle\Entity\Usuario", inversedBy="eventos")
+     * @ORM\JoinColumn(name="usuario", referencedColumnName="id")
+     */
+    protected $usuario;
+
+    /**
+     * @var ArrayCollection|Ingreso[]
+     * 
+     * @ORM\OneToMany(targetEntity="Ingreso", mappedBy="evento", cascade={"persist","remove"})
+     * 
+     */
+    private $ingresos;
+
+    /**
+     * @var ArrayCollection|Egreso[]
+     * 
+     * @ORM\OneToMany(targetEntity="Egreso", mappedBy="evento", cascade={"persist","remove"})
+     * 
+     */
+    private $egresos;
+
+    //-----------------------------------------------------
+    // Métodos
+    //-----------------------------------------------------
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->ingresos = new ArrayCollection();
+        $this->egresos = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -125,4 +171,3 @@ class Evento
         return $this->descripcion;
     }
 }
-

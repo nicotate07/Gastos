@@ -9,7 +9,8 @@
             "UsuarioBundle\\": "src/UsuarioBundle",
             "EventoBundle\\": "src/EventoBundle",
             "AhorroBundle\\": "src/AhorroBundle",
-            "CuentaBundle\\": "src/CuentaBundle"
+            "CuentaBundle\\": "src/CuentaBundle",
+            "ExtraBundle\\": "src/ExtraBundle"
         },
         "classmap": [ "app/AppKernel.php", "app/AppCache.php" ]
     },

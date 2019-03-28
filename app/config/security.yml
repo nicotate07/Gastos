@@ -13,10 +13,9 @@ security:
             id: fos_user.user_provider.username
 
     firewalls:
-          
-        # dev:
-        #     pattern: ^/
-        #     security: false
+        dev:
+            pattern: ^/
+            security: false
 
         main:
             pattern:  ^/authenticate

@@ -4,6 +4,10 @@ namespace UsuarioBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
+use EventoBundle\Entity\Evento;
+use AhorroBundle\Entity\Ahorro;
+use CuentaBundle\Entity\Cuenta;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Usuario
@@ -13,6 +17,10 @@ use FOS\UserBundle\Model\User as BaseUser;
  */
 class Usuario extends BaseUser
 {
+    //-----------------------------------------------------
+    // Atributos
+    //-----------------------------------------------------
+
     /**
      * @var int
      *
@@ -25,31 +33,61 @@ class Usuario extends BaseUser
     /**
      * @var string
      *
-     * @ORM\Column(name="username", type="string", length=255, unique=true)
      */
     protected $username;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="password", type="string", length=255)
      */
     protected $password;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="password_verification", type="string", length=255)
-     */
-    protected $passwordVerification;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="nombre_apellido", type="string", length=255)
+     * @ORM\Column(name="nombre_apellido", type="string", length=255, nullable=true)
      */
     protected $nombreApellido;
+    
+    //-----------------------------------------------------
+    // Relaciones
+    //-----------------------------------------------------
 
+    /**
+     * @var ArrayCollection|Evento[]
+     * 
+     * @ORM\OneToMany(targetEntity="Evento", mappedBy="usuario", cascade={"persist","remove"})
+     * 
+     */
+    private $eventos;
+
+    /**
+     * @var ArrayCollection|Ahorro[]
+     * 
+     * @ORM\OneToMany(targetEntity="Ahorro", mappedBy="usuario", cascade={"persist","remove"})
+     * 
+     */
+    private $ahorros;
+
+    /**
+     * @var ArrayCollection|Cuenta[]
+     * 
+     * @ORM\OneToMany(targetEntity="Cuenta", mappedBy="usuario", cascade={"persist","remove"})
+     * 
+     */
+    private $cuentas;
+
+    //-----------------------------------------------------
+    // Métodos
+    //-----------------------------------------------------
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->eventos = new ArrayCollection();
+        $this->ahorros = new ArrayCollection();
+        $this->cuentas = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -107,30 +145,6 @@ class Usuario extends BaseUser
     public function getPassword()
     {
         return $this->password;
-    }
-
-    /**
-     * Set passwordVerification
-     *
-     * @param string $passwordVerification
-     *
-     * @return Usuario
-     */
-    public function setPasswordVerification($passwordVerification)
-    {
-        $this->passwordVerification = $passwordVerification;
-
-        return $this;
-    }
-
-    /**
-     * Get passwordVerification
-     *
-     * @return string
-     */
-    public function getPasswordVerification()
-    {
-        return $this->passwordVerification;
     }
 
     /**
