@@ -43,8 +43,95 @@ class UsuarioController extends FOSRestController
     /**
      * @Rest\View
      */
-    // public function postUsuariosAction(){
+    public function postUsuariosAction(){
+        $em = $this->getDoctrine()->getManager();
+        $view = $this->view();
+        try {
+            $usuario = new Usuario();
+            $form = $this->createForm(UsuarioType::class, $usuario)
+                ->handleRequest($request);
 
-    //     return 0;
-    // }
+            if ($form->isValid()) {
+                dump("Form valido");die();
+                $usuario->setEnabled(true);
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($usuario);
+                $em->flush();
+                $view->setStatusCode(201); //Created
+                $response = $this->handleView($view);
+                return $response;
+            }
+            $view->setStatusCode(400) //Bad request
+                ->setData($form);
+            return $this->handleView($view);
+        } catch (\Exception $ex) {
+            throw new \Symfony\Component\HttpKernel\Exception\BadRequestHttpException($ex->getMessage());
+        }
+    }
+
+        /**
+     * @Rest\View
+     */
+    public function postUsuarioAction(Request $request, $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $view = $this->view();
+
+        $usuario = $em->getRepository('UsuarioBundle:Usuario')->find($id);
+        if (!$usuario) {
+            $view->setStatusCode(404);
+            return $this->handleView($view);
+        }
+
+        $form = $this->createForm(UsuarioType::class, $usuario)
+            ->handleRequest($request);
+
+        if ($form->isValid()) {
+            $password = $form->get('plainPassword')->getData();
+            $usuario->setPassword($password);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($usuario);
+            $em->flush();
+
+            $view->setStatusCode(200); //Created
+            $response = $this->handleView($view);
+            return $response;
+        }
+        $view->setStatusCode(400) //Bad request
+            ->setData($form);
+        return $this->handleView($view);
+    }
+    
+    /**
+     * @Rest\View
+     */
+    public function postContraseniaAction(Request $request, $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $view = $this->view();
+
+        $usuario = $em->getRepository('UsuarioBundle:Usuario')->find($id);
+        if (!$usuario) {
+            $view->setStatusCode(404);
+            return $this->handleView($view);
+        }
+
+        $form = $this->createForm(ContraseniaType::class, $usuario)
+            ->handleRequest($request);
+
+        if ($form->isValid()) {
+            $password = $form->get('plainPassword')->getData();
+            $usuario->setPassword($password);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($usuario);
+            $em->flush();
+
+            $view->setStatusCode(200); //Created
+            $response = $this->handleView($view);
+            return $response;
+        }
+        $view->setStatusCode(400) //Bad request
+            ->setData($form);
+        return $this->handleView($view);
+    }
 }

@@ -27,8 +27,14 @@ app:
     
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+    
+ingreso:
+    type:     rest
+    resource: ExtraBundle\Controller\ExtraController
+    defaults: {_format: json}
 
 usuario:
     type:     rest
     resource: UsuarioBundle\Controller\UsuarioController
     defaults: {_format: json}
+

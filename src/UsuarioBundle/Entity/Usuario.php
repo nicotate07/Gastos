@@ -57,7 +57,7 @@ class Usuario extends BaseUser
     /**
      * @var ArrayCollection|Evento[]
      * 
-     * @ORM\OneToMany(targetEntity="Evento", mappedBy="usuario", cascade={"persist","remove"})
+     * @ORM\OneToMany(targetEntity="\EventoBundle\Entity\Evento", mappedBy="usuario", cascade={"persist","remove"})
      * 
      */
     private $eventos;
@@ -65,7 +65,7 @@ class Usuario extends BaseUser
     /**
      * @var ArrayCollection|Ahorro[]
      * 
-     * @ORM\OneToMany(targetEntity="Ahorro", mappedBy="usuario", cascade={"persist","remove"})
+     * @ORM\OneToMany(targetEntity="\AhorroBundle\Entity\Ahorro", mappedBy="usuario", cascade={"persist","remove"})
      * 
      */
     private $ahorros;
@@ -73,7 +73,7 @@ class Usuario extends BaseUser
     /**
      * @var ArrayCollection|Cuenta[]
      * 
-     * @ORM\OneToMany(targetEntity="Cuenta", mappedBy="usuario", cascade={"persist","remove"})
+     * @ORM\OneToMany(targetEntity="\CuentaBundle\Entity\Cuenta", mappedBy="usuario", cascade={"persist","remove"})
      * 
      */
     private $cuentas;

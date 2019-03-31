@@ -58,7 +58,7 @@ class Ahorro
     /**
      * @var ArrayCollection|Ingreso[]
      * 
-     * @ORM\OneToMany(targetEntity="Ingreso", mappedBy="ahorro", cascade={"persist","remove"})
+     * @ORM\OneToMany(targetEntity="\ExtraBundle\Entity\Ingreso", mappedBy="ahorro", cascade={"persist","remove"})
      * 
      */
     private $ingresos;
@@ -66,7 +66,7 @@ class Ahorro
     /**
      * @var ArrayCollection|Egreso[]
      * 
-     * @ORM\OneToMany(targetEntity="Egreso", mappedBy="ahorro", cascade={"persist","remove"})
+     * @ORM\OneToMany(targetEntity="\ExtraBundle\Entity\Egreso", mappedBy="ahorro", cascade={"persist","remove"})
      * 
      */
     private $egresos;

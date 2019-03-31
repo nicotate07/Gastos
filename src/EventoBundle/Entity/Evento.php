@@ -65,7 +65,7 @@ class Evento
     /**
      * @var ArrayCollection|Ingreso[]
      * 
-     * @ORM\OneToMany(targetEntity="Ingreso", mappedBy="evento", cascade={"persist","remove"})
+     * @ORM\OneToMany(targetEntity="\ExtraBundle\Entity\Ingreso", mappedBy="evento", cascade={"persist","remove"})
      * 
      */
     private $ingresos;
@@ -73,7 +73,7 @@ class Evento
     /**
      * @var ArrayCollection|Egreso[]
      * 
-     * @ORM\OneToMany(targetEntity="Egreso", mappedBy="evento", cascade={"persist","remove"})
+     * @ORM\OneToMany(targetEntity="\ExtraBundle\Entity\Egreso", mappedBy="evento", cascade={"persist","remove"})
      * 
      */
     private $egresos;
