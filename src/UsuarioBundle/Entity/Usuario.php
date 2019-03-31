@@ -8,6 +8,7 @@ use EventoBundle\Entity\Evento;
 use AhorroBundle\Entity\Ahorro;
 use CuentaBundle\Entity\Cuenta;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Usuario
@@ -38,7 +39,7 @@ class Usuario extends BaseUser
 
     /**
      * @var string
-     *
+     * 
      */
     protected $password;
 
