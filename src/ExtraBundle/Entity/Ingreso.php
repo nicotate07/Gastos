@@ -45,7 +45,7 @@ class Ingreso
     /**
      * @var string
      *
-     * @ORM\Column(name="descripcion", type="string", length=255)
+     * @ORM\Column(name="descripcion", type="string", length=255, nullable=true)
      */
     private $descripcion;
 
@@ -57,7 +57,7 @@ class Ingreso
      * @var \EventoBundle\Entity\Evento
      * 
      * @ORM\ManyToOne(targetEntity="\EventoBundle\Entity\Evento", inversedBy="ingresos")
-     * @ORM\JoinColumn(name="evento", referencedColumnName="id")
+     * @ORM\JoinColumn(name="evento", referencedColumnName="id", nullable=true)
      */
     protected $evento;
 
@@ -65,7 +65,7 @@ class Ingreso
      * @var \AhorroBundle\Entity\Ahorro
      * 
      * @ORM\ManyToOne(targetEntity="\AhorroBundle\Entity\Ahorro", inversedBy="ingresos")
-     * @ORM\JoinColumn(name="ahorro", referencedColumnName="id")
+     * @ORM\JoinColumn(name="ahorro", referencedColumnName="id", nullable=true)
      */
     protected $ahorro;
 
@@ -73,7 +73,7 @@ class Ingreso
      * @var \CuentaBundle\Entity\Cuenta
      * 
      * @ORM\ManyToOne(targetEntity="\CuentaBundle\Entity\Cuenta", inversedBy="ingresos")
-     * @ORM\JoinColumn(name="cuenta", referencedColumnName="id")
+     * @ORM\JoinColumn(name="cuenta", referencedColumnName="id", nullable=true)
      */
     protected $cuenta;
 
