@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use EventoBundle\Entity\Evento;
 use AhorroBundle\Entity\Ahorro;
 use CuentaBundle\Entity\Cuenta;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Egreso
@@ -32,6 +33,7 @@ class Egreso
      * @var float
      *
      * @ORM\Column(name="monto", type="float")
+     * @Assert\NotNull()
      */
     private $monto;
 
@@ -39,6 +41,7 @@ class Egreso
      * @var \DateTime
      *
      * @ORM\Column(name="fecha", type="datetime")
+     * @Assert\NotNull()
      */
     private $fecha;
 
@@ -46,6 +49,7 @@ class Egreso
      * @var string
      *
      * @ORM\Column(name="descripcion", type="string", length=255)
+     * @Assert\NotNull()
      */
     private $descripcion;
 

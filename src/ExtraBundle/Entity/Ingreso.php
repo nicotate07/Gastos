@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use EventoBundle\Entity\Evento;
 use AhorroBundle\Entity\Ahorro;
 use CuentaBundle\Entity\Cuenta;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Ingreso
@@ -32,20 +33,23 @@ class Ingreso
      * @var float
      *
      * @ORM\Column(name="monto", type="float")
+     * @Assert\NotNull()
      */
     private $monto;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="fecha", type="datetime", nullable=true)
+     * @ORM\Column(name="fecha", type="datetime")
+     * @Assert\NotNull()
      */
     private $fecha;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="descripcion", type="string", length=255, nullable=true)
+     * @ORM\Column(name="descripcion", type="string", length=255)
+     * @Assert\NotNull()
      */
     private $descripcion;
 
@@ -57,7 +61,7 @@ class Ingreso
      * @var \EventoBundle\Entity\Evento
      * 
      * @ORM\ManyToOne(targetEntity="\EventoBundle\Entity\Evento", inversedBy="ingresos")
-     * @ORM\JoinColumn(name="evento", referencedColumnName="id", nullable=true)
+     * @ORM\JoinColumn(name="evento", referencedColumnName="id")
      */
     protected $evento;
 
@@ -65,7 +69,7 @@ class Ingreso
      * @var \AhorroBundle\Entity\Ahorro
      * 
      * @ORM\ManyToOne(targetEntity="\AhorroBundle\Entity\Ahorro", inversedBy="ingresos")
-     * @ORM\JoinColumn(name="ahorro", referencedColumnName="id", nullable=true)
+     * @ORM\JoinColumn(name="ahorro", referencedColumnName="id")
      */
     protected $ahorro;
 
@@ -73,7 +77,7 @@ class Ingreso
      * @var \CuentaBundle\Entity\Cuenta
      * 
      * @ORM\ManyToOne(targetEntity="\CuentaBundle\Entity\Cuenta", inversedBy="ingresos")
-     * @ORM\JoinColumn(name="cuenta", referencedColumnName="id", nullable=true)
+     * @ORM\JoinColumn(name="cuenta", referencedColumnName="id")
      */
     protected $cuenta;
 

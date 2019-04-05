@@ -146,7 +146,6 @@ class ExtraController extends FOSRestController
                 ->handleRequest($request);
 
             if ($form->isValid()) {
-                $egreso->setEnabled(true);
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($egreso);
                 $em->flush();

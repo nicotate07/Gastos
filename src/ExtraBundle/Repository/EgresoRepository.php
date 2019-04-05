@@ -10,4 +10,18 @@ namespace ExtraBundle\Repository;
  */
 class EgresoRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function buscarPorAtributos($egreso){
+        $qb = $this->getEntityManager()->createQueryBuilder();
+        $qb->select('egreso')
+                ->from($this->getEntityName(), 'egreso');
+        $this->addSearchParameters($qb, $egreso);
+        return $qb->getQuery()->getResult();
+    }
+
+    public function addSearchParameters($qb, $egreso){
+        if($egreso){
+            $qb->where($qb->expr()->like('egreso.username', ':username'));
+            $qb->setParameter('username', "%{$egreso}%");
+        }
+    }
 }
