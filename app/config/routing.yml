@@ -13,11 +13,6 @@ ahorro:
     type:     annotation
     prefix:   /
 
-evento:
-    resource: "@EventoBundle/Controller/"
-    type:     annotation
-    prefix:   /
-
 api_login_check:
     path: /authenticate
 
@@ -36,5 +31,10 @@ ingreso:
 usuario:
     type:     rest
     resource: UsuarioBundle\Controller\UsuarioController
+    defaults: {_format: json}
+    
+evento:
+    type:     rest
+    resource: EventoBundle\Controller\EventoController
     defaults: {_format: json}
 

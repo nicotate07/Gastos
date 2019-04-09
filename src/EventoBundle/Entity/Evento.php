@@ -3,10 +3,9 @@
 namespace EventoBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use UsuarioBundle\Entity\Usuario;
 use Doctrine\Common\Collections\ArrayCollection;
-use ExtraBundle\Entity\Ingreso;
-use ExtraBundle\Entity\Egreso;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * Evento
@@ -26,6 +25,8 @@ class Evento
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * 
+     * @Groups({"evento"})
      */
     private $id;
 
@@ -33,6 +34,10 @@ class Evento
      * @var \DateTime
      *
      * @ORM\Column(name="fecha_inicio", type="datetime")
+     * 
+     * @Assert\NotNull()
+     * 
+     * @Groups({"evento"})
      */
     private $fechaInicio;
 
@@ -40,6 +45,10 @@ class Evento
      * @var \DateTime
      *
      * @ORM\Column(name="fecha_fin", type="datetime")
+     * 
+     * @Assert\NotNull()
+     * 
+     * @Groups({"evento"})
      */
     private $fechaFin;
 
@@ -47,6 +56,10 @@ class Evento
      * @var string
      *
      * @ORM\Column(name="descripcion", type="string", length=255, nullable=true)
+     * 
+     * @Assert\NotNull()
+     * 
+     * @Groups({"evento"})
      */
     private $descripcion;
 
@@ -59,6 +72,8 @@ class Evento
      * 
      * @ORM\ManyToOne(targetEntity="\UsuarioBundle\Entity\Usuario", inversedBy="eventos")
      * @ORM\JoinColumn(name="usuario", referencedColumnName="id")
+     * 
+     * @Assert\NotNull()
      */
     protected $usuario;
 
@@ -67,6 +82,7 @@ class Evento
      * 
      * @ORM\OneToMany(targetEntity="\ExtraBundle\Entity\Ingreso", mappedBy="evento", cascade={"persist","remove"})
      * 
+     * @Groups({"evento"})
      */
     private $ingresos;
 
@@ -75,6 +91,7 @@ class Evento
      * 
      * @ORM\OneToMany(targetEntity="\ExtraBundle\Entity\Egreso", mappedBy="evento", cascade={"persist","remove"})
      * 
+     * @Groups({"evento"})
      */
     private $egresos;
 
@@ -84,7 +101,6 @@ class Evento
 
     public function __construct()
     {
-        parent::__construct();
         $this->ingresos = new ArrayCollection();
         $this->egresos = new ArrayCollection();
     }
@@ -198,11 +214,11 @@ class Evento
     /**
      * Add ingreso
      *
-     * @param \EventoBundle\Entity\Ingreso $ingreso
+     * @param \ExtraBundle\Entity\Ingreso $ingreso
      *
      * @return Evento
      */
-    public function addIngreso(\EventoBundle\Entity\Ingreso $ingreso)
+    public function addIngreso(\ExtraBundle\Entity\Ingreso $ingreso)
     {
         $this->ingresos[] = $ingreso;
 
@@ -212,9 +228,9 @@ class Evento
     /**
      * Remove ingreso
      *
-     * @param \EventoBundle\Entity\Ingreso $ingreso
+     * @param \ExtraBundle\Entity\Ingreso $ingreso
      */
-    public function removeIngreso(\EventoBundle\Entity\Ingreso $ingreso)
+    public function removeIngreso(\ExtraBundle\Entity\Ingreso $ingreso)
     {
         $this->ingresos->removeElement($ingreso);
     }
@@ -232,11 +248,11 @@ class Evento
     /**
      * Add egreso
      *
-     * @param \EventoBundle\Entity\Egreso $egreso
+     * @param \ExtraBundle\Entity\Egreso $egreso
      *
      * @return Evento
      */
-    public function addEgreso(\EventoBundle\Entity\Egreso $egreso)
+    public function addEgreso(\ExtraBundle\Entity\Egreso $egreso)
     {
         $this->egresos[] = $egreso;
 
@@ -246,9 +262,9 @@ class Evento
     /**
      * Remove egreso
      *
-     * @param \EventoBundle\Entity\Egreso $egreso
+     * @param \ExtraBundle\Entity\Egreso $egreso
      */
-    public function removeEgreso(\EventoBundle\Entity\Egreso $egreso)
+    public function removeEgreso(\ExtraBundle\Entity\Egreso $egreso)
     {
         $this->egresos->removeElement($egreso);
     }

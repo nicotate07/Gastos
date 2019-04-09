@@ -77,7 +77,6 @@ class Ahorro
 
     public function __construct()
     {
-        parent::__construct();
         $this->ingresos = new ArrayCollection();
         $this->egresos = new ArrayCollection();
     }
@@ -167,11 +166,11 @@ class Ahorro
     /**
      * Add ingreso
      *
-     * @param \AhorroBundle\Entity\Ingreso $ingreso
+     * @param \ExtraBundle\Entity\Ingreso $ingreso
      *
      * @return Ahorro
      */
-    public function addIngreso(\AhorroBundle\Entity\Ingreso $ingreso)
+    public function addIngreso(\ExtraBundle\Entity\Ingreso $ingreso)
     {
         $this->ingresos[] = $ingreso;
 
@@ -181,9 +180,9 @@ class Ahorro
     /**
      * Remove ingreso
      *
-     * @param \AhorroBundle\Entity\Ingreso $ingreso
+     * @param \ExtraBundle\Entity\Ingreso $ingreso
      */
-    public function removeIngreso(\AhorroBundle\Entity\Ingreso $ingreso)
+    public function removeIngreso(\ExtraBundle\Entity\Ingreso $ingreso)
     {
         $this->ingresos->removeElement($ingreso);
     }
@@ -201,11 +200,11 @@ class Ahorro
     /**
      * Add egreso
      *
-     * @param \AhorroBundle\Entity\Egreso $egreso
+     * @param \ExtraBundle\Entity\Egreso $egreso
      *
      * @return Ahorro
      */
-    public function addEgreso(\AhorroBundle\Entity\Egreso $egreso)
+    public function addEgreso(\ExtraBundle\Entity\Egreso $egreso)
     {
         $this->egresos[] = $egreso;
 
@@ -215,9 +214,9 @@ class Ahorro
     /**
      * Remove egreso
      *
-     * @param \AhorroBundle\Entity\Egreso $egreso
+     * @param \ExtraBundle\Entity\Egreso $egreso
      */
-    public function removeEgreso(\AhorroBundle\Entity\Egreso $egreso)
+    public function removeEgreso(\ExtraBundle\Entity\Egreso $egreso)
     {
         $this->egresos->removeElement($egreso);
     }

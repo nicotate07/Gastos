@@ -9,6 +9,7 @@ use AhorroBundle\Entity\Ahorro;
 use CuentaBundle\Entity\Cuenta;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * Usuario
@@ -28,18 +29,22 @@ class Usuario extends BaseUser
      * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * 
+     * @Groups({"usuarios"})
      */
     protected $id;
 
     /**
      * @var string
-     *
+     * 
+     * @Groups({"usuarios"})
      */
     protected $username;
 
     /**
      * @var string
      * 
+     * @Groups({"usuarios"})
      */
     protected $password;
 
@@ -47,6 +52,8 @@ class Usuario extends BaseUser
      * @var string
      *
      * @ORM\Column(name="nombre_apellido", type="string", length=255, nullable=true)
+     * 
+     * @Groups({"usuarios"})
      */
     protected $nombreApellido;
     
@@ -175,11 +182,11 @@ class Usuario extends BaseUser
     /**
      * Add evento
      *
-     * @param \UsuarioBundle\Entity\Evento $evento
+     * @param \EventoBundle\Entity\Evento $evento
      *
      * @return Usuario
      */
-    public function addEvento(\UsuarioBundle\Entity\Evento $evento)
+    public function addEvento(\EventoBundle\Entity\Evento $evento)
     {
         $this->eventos[] = $evento;
 
@@ -189,9 +196,9 @@ class Usuario extends BaseUser
     /**
      * Remove evento
      *
-     * @param \UsuarioBundle\Entity\Evento $evento
+     * @param \EventoBundle\Entity\Evento $evento
      */
-    public function removeEvento(\UsuarioBundle\Entity\Evento $evento)
+    public function removeEvento(\EventoBundle\Entity\Evento $evento)
     {
         $this->eventos->removeElement($evento);
     }
@@ -209,11 +216,11 @@ class Usuario extends BaseUser
     /**
      * Add ahorro
      *
-     * @param \UsuarioBundle\Entity\Ahorro $ahorro
+     * @param \AhorroBundle\Entity\Ahorro $ahorro
      *
      * @return Usuario
      */
-    public function addAhorro(\UsuarioBundle\Entity\Ahorro $ahorro)
+    public function addAhorro(\AhorroBundle\Entity\Ahorro $ahorro)
     {
         $this->ahorros[] = $ahorro;
 
@@ -223,9 +230,9 @@ class Usuario extends BaseUser
     /**
      * Remove ahorro
      *
-     * @param \UsuarioBundle\Entity\Ahorro $ahorro
+     * @param \AhorroBundle\Entity\Ahorro $ahorro
      */
-    public function removeAhorro(\UsuarioBundle\Entity\Ahorro $ahorro)
+    public function removeAhorro(\AhorroBundle\Entity\Ahorro $ahorro)
     {
         $this->ahorros->removeElement($ahorro);
     }
@@ -243,11 +250,11 @@ class Usuario extends BaseUser
     /**
      * Add cuenta
      *
-     * @param \UsuarioBundle\Entity\Cuenta $cuenta
+     * @param \CuentaBundle\Entity\Cuenta $cuenta
      *
      * @return Usuario
      */
-    public function addCuenta(\UsuarioBundle\Entity\Cuenta $cuenta)
+    public function addCuenta(\CuentaBundle\Entity\Cuenta $cuenta)
     {
         $this->cuentas[] = $cuenta;
 
@@ -257,9 +264,9 @@ class Usuario extends BaseUser
     /**
      * Remove cuenta
      *
-     * @param \UsuarioBundle\Entity\Cuenta $cuenta
+     * @param \CuentaBundle\Entity\Cuenta $cuenta
      */
-    public function removeCuenta(\UsuarioBundle\Entity\Cuenta $cuenta)
+    public function removeCuenta(\CuentaBundle\Entity\Cuenta $cuenta)
     {
         $this->cuentas->removeElement($cuenta);
     }

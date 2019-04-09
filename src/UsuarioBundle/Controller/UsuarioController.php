@@ -14,7 +14,8 @@ use Symfony\Component\HttpFoundation\Request;
 class UsuarioController extends FOSRestController
 {
     /**
-     * @Rest\View
+     * @Rest\View(serializerGroups={"usuarios"})
+     * 
      */
     public function getUsuariosAction(Request $request)
     {
@@ -52,7 +53,6 @@ class UsuarioController extends FOSRestController
                 ->handleRequest($request);
 
             if ($form->isValid()) {
-                dump("Form valido");die();
                 $usuario->setEnabled(true);
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($usuario);

@@ -167,11 +167,11 @@ class Cuenta
     /**
      * Add ingreso
      *
-     * @param \CuentaBundle\Entity\Ingreso $ingreso
+     * @param \ExtraBundle\Entity\Ingreso $ingreso
      *
      * @return Cuenta
      */
-    public function addIngreso(\CuentaBundle\Entity\Ingreso $ingreso)
+    public function addIngreso(\ExtraBundle\Entity\Ingreso $ingreso)
     {
         $this->ingresos[] = $ingreso;
 
@@ -181,9 +181,9 @@ class Cuenta
     /**
      * Remove ingreso
      *
-     * @param \CuentaBundle\Entity\Ingreso $ingreso
+     * @param \ExtraBundle\Entity\Ingreso $ingreso
      */
-    public function removeIngreso(\CuentaBundle\Entity\Ingreso $ingreso)
+    public function removeIngreso(\ExtraBundle\Entity\Ingreso $ingreso)
     {
         $this->ingresos->removeElement($ingreso);
     }
@@ -201,11 +201,11 @@ class Cuenta
     /**
      * Add egreso
      *
-     * @param \CuentaBundle\Entity\Egreso $egreso
+     * @param \ExtraBundle\Entity\Egreso $egreso
      *
      * @return Cuenta
      */
-    public function addEgreso(\CuentaBundle\Entity\Egreso $egreso)
+    public function addEgreso(\ExtraBundle\Entity\Egreso $egreso)
     {
         $this->egresos[] = $egreso;
 
@@ -215,9 +215,9 @@ class Cuenta
     /**
      * Remove egreso
      *
-     * @param \CuentaBundle\Entity\Egreso $egreso
+     * @param \ExtraBundle\Entity\Egreso $egreso
      */
-    public function removeEgreso(\CuentaBundle\Entity\Egreso $egreso)
+    public function removeEgreso(\ExtraBundle\Entity\Egreso $egreso)
     {
         $this->egresos->removeElement($egreso);
     }
