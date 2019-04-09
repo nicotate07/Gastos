@@ -7,6 +7,8 @@ use UsuarioBundle\Entity\Usuario;
 use Doctrine\Common\Collections\ArrayCollection;
 use ExtraBundle\Entity\Ingreso;
 use ExtraBundle\Entity\Egreso;
+use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Ahorro
@@ -26,6 +28,8 @@ class Ahorro
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * 
+     * @Groups({"ahorro"})
      */
     private $id;
 
@@ -33,6 +37,10 @@ class Ahorro
      * @var \DateTime
      *
      * @ORM\Column(name="fecha_inicio", type="datetime")
+     * 
+     * @Assert\NotNull()
+     * 
+     * @Groups({"ahorro"})
      */
     private $fechaInicio;
 
@@ -40,6 +48,10 @@ class Ahorro
      * @var string
      *
      * @ORM\Column(name="descripcion", type="string", length=255)
+     * 
+     * @Assert\NotNull()
+     * 
+     * @Groups({"ahorro"})
      */
     private $descripcion;
 
@@ -52,6 +64,8 @@ class Ahorro
      * 
      * @ORM\ManyToOne(targetEntity="\UsuarioBundle\Entity\Usuario", inversedBy="ahorros")
      * @ORM\JoinColumn(name="usuario", referencedColumnName="id")
+     * 
+     * @Assert\NotNull()
      */
     protected $usuario;
 
@@ -60,6 +74,7 @@ class Ahorro
      * 
      * @ORM\OneToMany(targetEntity="\ExtraBundle\Entity\Ingreso", mappedBy="ahorro", cascade={"persist","remove"})
      * 
+     * @Groups({"ahorro"})
      */
     private $ingresos;
 
@@ -68,6 +83,7 @@ class Ahorro
      * 
      * @ORM\OneToMany(targetEntity="\ExtraBundle\Entity\Egreso", mappedBy="ahorro", cascade={"persist","remove"})
      * 
+     * @Groups({"ahorro"})
      */
     private $egresos;
 

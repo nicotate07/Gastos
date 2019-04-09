@@ -3,16 +3,6 @@ extra:
     type:     annotation
     prefix:   /
 
-cuenta:
-    resource: "@CuentaBundle/Controller/"
-    type:     annotation
-    prefix:   /
-
-ahorro:
-    resource: "@AhorroBundle/Controller/"
-    type:     annotation
-    prefix:   /
-
 api_login_check:
     path: /authenticate
 
@@ -37,4 +27,14 @@ evento:
     type:     rest
     resource: EventoBundle\Controller\EventoController
     defaults: {_format: json}
+    
+cuenta:
+    type:     rest
+    resource: CuentaBundle\Controller\CuentaController
+    defaults: {_format: json}
 
+    
+ahorro:
+    type:     rest
+    resource: AhorroBundle\Controller\AhorroController
+    defaults: {_format: json}

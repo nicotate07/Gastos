@@ -7,6 +7,8 @@ use UsuarioBundle\Entity\Usuario;
 use Doctrine\Common\Collections\ArrayCollection;
 use ExtraBundle\Entity\Ingreso;
 use ExtraBundle\Entity\Egreso;
+use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Cuenta
@@ -26,6 +28,8 @@ class Cuenta
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * 
+     * @Groups({"cuenta"})
      */
     private $id;
 
@@ -33,6 +37,10 @@ class Cuenta
      * @var \DateTime
      *
      * @ORM\Column(name="fecha_creacion", type="datetime")
+     * 
+     * @Assert\NotNull()
+     * 
+     * @Groups({"cuenta"})
      */
     private $fechaCreacion;
 
@@ -40,6 +48,10 @@ class Cuenta
      * @var string
      *
      * @ORM\Column(name="nombre_cuenta", type="string", length=255)
+     * 
+     * @Assert\NotNull()
+     * 
+     * @Groups({"cuenta"})
      */
     private $nombreCuenta;
 
@@ -52,6 +64,8 @@ class Cuenta
      * 
      * @ORM\ManyToOne(targetEntity="\UsuarioBundle\Entity\Usuario", inversedBy="cuentas")
      * @ORM\JoinColumn(name="usuario", referencedColumnName="id")
+     * 
+     * @Assert\NotNull()
      */
     protected $usuario;
 
@@ -60,6 +74,7 @@ class Cuenta
      * 
      * @ORM\OneToMany(targetEntity="\ExtraBundle\Entity\Ingreso", mappedBy="cuenta", cascade={"persist","remove"})
      * 
+     * @Groups({"cuenta"})
      */
     private $ingresos;
 
@@ -68,6 +83,7 @@ class Cuenta
      * 
      * @ORM\OneToMany(targetEntity="\ExtraBundle\Entity\Egreso", mappedBy="cuenta", cascade={"persist","remove"})
      * 
+     * @Groups({"cuenta"})
      */
     private $egresos;
 
@@ -77,7 +93,6 @@ class Cuenta
 
     public function __construct()
     {
-        parent::__construct();
         $this->ingresos = new ArrayCollection();
         $this->egresos = new ArrayCollection();
     }

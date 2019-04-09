@@ -19,8 +19,7 @@ class UsuarioController extends FOSRestController
      */
     public function getUsuariosAction(Request $request)
     {
-        $username = $request->query->get('username');
-        $usuarios = $this->getDoctrine()->getRepository('UsuarioBundle:Usuario')->buscarPorAtributos($username);
+        $usuarios = $this->getDoctrine()->getRepository('UsuarioBundle:Usuario')->findAll();
         if($usuarios === null) $usuarios = array();
 
         return array(
@@ -69,7 +68,7 @@ class UsuarioController extends FOSRestController
         }
     }
 
-        /**
+    /**
      * @Rest\View
      */
     public function postUsuarioAction(Request $request, $id)
