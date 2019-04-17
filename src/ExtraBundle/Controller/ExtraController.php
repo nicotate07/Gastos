@@ -103,6 +103,19 @@ class ExtraController extends FOSRestController
         return $this->handleView($view);
     }
 
+    /**
+     * @Rest\View
+     */
+    public function deleteIngresosAction(Ingreso $ingreso) {
+        try {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($ingreso);
+            $em->flush();
+        } catch (\Exception $ex) {
+            throw new \Symfony\Component\HttpKernel\Exception\BadRequestHttpException($ex->getMessage());
+        }
+    }
+
     //-----------------------------------------------------
     // Egresos
     //-----------------------------------------------------
@@ -190,5 +203,18 @@ class ExtraController extends FOSRestController
         $view->setStatusCode(400) //Bad request
             ->setData($form);
         return $this->handleView($view);
+    }
+
+    /**
+     * @Rest\View
+     */
+    public function deleteEgresosAction(Egreso $egreso) {
+        try {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($egreso);
+            $em->flush();
+        } catch (\Exception $ex) {
+            throw new \Symfony\Component\HttpKernel\Exception\BadRequestHttpException($ex->getMessage());
+        }
     }
 }
